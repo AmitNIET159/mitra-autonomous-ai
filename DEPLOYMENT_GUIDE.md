@@ -11,8 +11,8 @@
 
 | Component | Platform | Tech Stack | Root Directory | Default URL |
 | :--- | :--- | :--- | :--- | :--- |
-| **Backend API** | **Render** | FastAPI, Python 3.11, SQLite | `backend` | `https://mitra-backend.onrender.com` |
-| **Frontend UI** | **Vercel** | Next.js 16, React 19, Tailwind v4 | `frontend` | `https://mitra-autonomous-ai.vercel.app` |
+| **Backend API** | **Render** | FastAPI, Python 3.11, SQLite | `backend` | [`https://mitra-autonomous-ai.onrender.com`](https://mitra-autonomous-ai.onrender.com) (Live) |
+| **Frontend UI** | **Vercel** | Next.js 16, React 19, Tailwind v4 | `frontend` | Pending Vercel deploy |
 
 MITRA's backend automatically initializes and seeds a 520-customer deterministic digital-twin database upon cold start if no database exists, ensuring the live demo is immediately operational with zero manual database provisioning.
 
