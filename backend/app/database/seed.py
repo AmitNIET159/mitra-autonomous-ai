@@ -12,7 +12,7 @@ Provides realistic synthetic data for:
 from datetime import datetime, timedelta, timezone
 import json
 import random
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 from app.core.logging import logger
 from app.database.connection import get_connection, init_db
 
