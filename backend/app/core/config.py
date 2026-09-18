@@ -26,6 +26,7 @@ class Settings(BaseSettings):
 
     # Hugging Face AI Configuration (Optional Fallback)
     HF_API_KEY: Optional[str] = None
+    HUGGINGFACE_API_KEY: Optional[str] = None
     HF_MODEL: str = "meta-llama/Llama-3.2-3B-Instruct"
 
     # AI Provider Preference: 'auto' | 'gemini' | 'huggingface' | 'fallback'
@@ -49,9 +50,15 @@ class Settings(BaseSettings):
         return bool(self.ENABLE_LLM and self.GEMINI_API_KEY and self.GEMINI_API_KEY.strip())
 
     @property
+    def effective_hf_api_key(self) -> Optional[str]:
+        """Returns whichever Hugging Face API key is set."""
+        return self.HF_API_KEY or self.HUGGINGFACE_API_KEY
+
+    @property
     def is_hf_active(self) -> bool:
         """Determines if live Hugging Face integration is configured and enabled."""
-        return bool(self.ENABLE_LLM and self.HF_API_KEY and self.HF_API_KEY.strip())
+        key = self.effective_hf_api_key
+        return bool(self.ENABLE_LLM and key and key.strip())
 
     @property
     def is_llm_active(self) -> bool:

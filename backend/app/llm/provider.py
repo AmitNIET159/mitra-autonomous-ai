@@ -114,13 +114,13 @@ class AIProviderManager:
         if pref == "gemini" and settings.is_gemini_active:
             candidates.append(GeminiClient(api_key=settings.GEMINI_API_KEY, model=settings.GEMINI_MODEL))  # type: ignore[arg-type]
         elif pref == "huggingface" and settings.is_hf_active:
-            candidates.append(HuggingFaceClient(api_key=settings.HF_API_KEY, model=settings.HF_MODEL))  # type: ignore[arg-type]
+            candidates.append(HuggingFaceClient(api_key=settings.effective_hf_api_key, model=settings.HF_MODEL))  # type: ignore[arg-type]
         elif pref != "fallback":
             # Auto order
             if settings.is_gemini_active:
                 candidates.append(GeminiClient(api_key=settings.GEMINI_API_KEY, model=settings.GEMINI_MODEL))  # type: ignore[arg-type]
             if settings.is_hf_active:
-                candidates.append(HuggingFaceClient(api_key=settings.HF_API_KEY, model=settings.HF_MODEL))  # type: ignore[arg-type]
+                candidates.append(HuggingFaceClient(api_key=settings.effective_hf_api_key, model=settings.HF_MODEL))  # type: ignore[arg-type]
 
         # Deterministic fallback is always the ultimate safety net
         candidates.append(FallbackClient())
