@@ -5,7 +5,7 @@ __pycache__/
 **/*.py[cod]
 *$py.class
 *.so
-.Python
+# Virtual environments
 env/
 venv/
 .venv/
@@ -15,8 +15,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+!frontend/lib/
 parts/
 sdist/
 var/
