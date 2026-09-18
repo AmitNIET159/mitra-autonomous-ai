@@ -20,6 +20,15 @@ The LLM is utilized for context understanding, signal investigation, and candida
 
 ---
 
+## 🌐 Live Cloud Deployment
+
+MITRA is production-ready and configured for zero-friction cloud deployment:
+- **Backend (FastAPI)**: Automated CI/CD deployment on [Render](https://render.com) using [`render.yaml`](render.yaml) Blueprint with dynamic port binding and automated SQLite digital-twin seeding.
+- **Frontend (Next.js 16)**: Native Edge deployment on [Vercel](https://vercel.com) using [`frontend/vercel.json`](frontend/vercel.json).
+- **Step-by-Step Deployment Guide**: Complete walkthrough in [**DEPLOYMENT_GUIDE.md**](DEPLOYMENT_GUIDE.md).
+
+---
+
 ## 2. Core Architecture
 
 ```

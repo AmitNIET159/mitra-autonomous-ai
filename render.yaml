@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: mitra-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SIMULATION_MODE
+        value: "true"
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: APP_ENV
+        value: production
+      - key: AI_PROVIDER_PREFERENCE
+        value: auto
+      - key: GEMINI_API_KEY
+        sync: false

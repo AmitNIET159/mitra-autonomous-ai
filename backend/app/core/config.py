@@ -40,6 +40,9 @@ class Settings(BaseSettings):
     # Must always be true for the hackathon prototype
     SIMULATION_MODE: bool = True
 
+    # CORS configuration for cloud deployments (Vercel, Render, local dev)
+    CORS_ORIGINS: str = "*"
+
     @property
     def is_gemini_active(self) -> bool:
         """Determines if live Gemini integration is configured and enabled."""
