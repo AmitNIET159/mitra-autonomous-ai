@@ -65,23 +65,23 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
   const executedDiscountStr = String(executedDiscountVal ?? '');
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-4">
+    <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
         <div className="flex items-center gap-2">
-          <div className="p-2 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg text-indigo-700 dark:text-indigo-400">
-            <Scale className="w-5 h-5" />
+          <div className="p-1.5 bg-blue-50 border border-blue-200/70 rounded-lg text-[#002E6E]">
+            <Scale className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">
-                Authoritative Decision & Autonomy Gate
+              <h2 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                Authoritative Decision &amp; Autonomy Gate
               </h2>
-              <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                Phases 7 & 12
+              <span className="text-[10px] bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded-full border border-slate-200">
+                Phases 7 &amp; 12
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-slate-500">
               Deterministic decision derivation, policy matrix evaluation, and transparent approval gating
             </p>
           </div>
@@ -94,7 +94,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
               <button
                 onClick={onCreateDecision}
                 disabled={isCreating}
-                className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#002E6E] hover:bg-[#001f4d] disabled:bg-slate-300 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#002E6E] hover:bg-[#001D47] active:bg-[#001330] disabled:bg-slate-300 text-white text-xs font-bold rounded-lg shadow-xs transition-all cursor-pointer disabled:cursor-not-allowed"
               >
                 {isCreating ? (
                   <>
@@ -109,7 +109,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
                 )}
               </button>
             ) : (
-              <div className="text-[11px] text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1.5 rounded-md border border-amber-200 dark:border-amber-800 flex items-center gap-1.5 font-medium">
+              <div className="text-[11px] text-amber-800 bg-amber-50 px-2.5 py-1.5 rounded-md border border-amber-200 flex items-center gap-1.5 font-semibold">
                 <AlertCircle className="w-3.5 h-3.5 text-amber-600 flex-shrink-0" />
                 Complete Guardrails first
               </div>
@@ -120,13 +120,13 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
       {/* Precondition Notice when GuardrailEvaluation is missing */}
       {!hasGuardrails && (
-        <div className="bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-lg p-4 text-center space-y-1.5">
-          <div className="inline-flex p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-400">
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1.5">
+          <div className="inline-flex p-2 bg-slate-100 rounded-full text-slate-400">
             <Lock className="w-4 h-4" />
           </div>
-          <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300">Precondition Not Met</h4>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-            A Decision cannot exist without an authoritative, persisted <strong className="text-slate-700 dark:text-slate-300">GuardrailEvaluation</strong>.
+          <h4 className="text-xs font-bold text-slate-700">Precondition Not Met</h4>
+          <p className="text-[11px] text-slate-500 max-w-md mx-auto">
+            A Decision cannot exist without an authoritative, persisted <strong className="text-slate-700">GuardrailEvaluation</strong>.
             Please run Step 4 (Guardrail Evaluation) above before synthesizing a decision.
           </p>
         </div>
@@ -134,20 +134,20 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
       {/* Guardrail Ready but Decision Not Yet Created */}
       {hasGuardrails && !decision && (
-        <div className="bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/40 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="bg-sky-50/60 border border-sky-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="space-y-0.5">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-blue-900 dark:text-blue-300">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-[#002E6E]">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
               Guardrail Evaluation Persisted ({guardrailEvaluation?.overall_status})
             </div>
-            <p className="text-[11px] text-blue-700 dark:text-blue-400">
-              Ready to derive authoritative decision for action <code className="bg-blue-100/60 dark:bg-blue-900/60 px-1 py-0.5 rounded text-[10px]">{proposal?.action_id || guardrailEvaluation?.action_id}</code>.
+            <p className="text-[11px] text-slate-600">
+              Ready to derive authoritative decision for action <code className="bg-white px-1.5 py-0.5 rounded text-[10px] font-mono border border-sky-200 text-[#002E6E]">{proposal?.action_id || guardrailEvaluation?.action_id}</code>.
             </p>
           </div>
           <button
             onClick={onCreateDecision}
             disabled={isCreating}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#002E6E] hover:bg-[#001f4d] disabled:bg-slate-300 text-white text-xs font-bold rounded-lg shadow-sm transition-colors cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#002E6E] hover:bg-[#001D47] active:bg-[#001330] disabled:bg-slate-300 text-white text-xs font-bold rounded-lg shadow-xs transition-all cursor-pointer"
           >
             {isCreating ? (
               <>
@@ -169,19 +169,19 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
         <div className="space-y-4">
           {/* Status Verdict Banner */}
           <div
-            className={`p-3.5 rounded-lg border flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
+            className={`p-3.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
               isPass
-                ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200'
+                ? 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
                 : isModify
-                ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-200'
+                ? 'bg-sky-50/70 border-sky-200 text-[#002E6E]'
                 : isBlock
-                ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-800 text-rose-900 dark:text-rose-200'
-                : 'bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200'
+                ? 'bg-rose-50/70 border-rose-200 text-rose-950'
+                : 'bg-amber-50/70 border-amber-200 text-amber-950'
             }`}
           >
             <div className="flex items-start gap-2.5">
               {isPass && <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />}
-              {isModify && <ShieldCheck className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
+              {isModify && <ShieldCheck className="w-5 h-5 text-[#007EA7] flex-shrink-0 mt-0.5" />}
               {isBlock && <ShieldAlert className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />}
               {isEscalate && <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />}
               <div>
@@ -189,11 +189,11 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
                   <span className="text-xs font-bold uppercase tracking-wider">
                     Authoritative Decision: {decision.decision_state}
                   </span>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/70 dark:bg-black/30 border border-current/20">
+                  <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-white border border-current/20">
                     {decision.decision_id}
                   </span>
                   {autonomyEvaluation && (
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-white text-[#002E6E] border border-sky-300">
                       Mode: {autonomyEvaluation.autonomy_mode}
                     </span>
                   )}
@@ -205,7 +205,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
             </div>
 
             <div className="text-right flex sm:flex-col items-center sm:items-end justify-between text-[11px] opacity-75 font-mono">
-              <span>{decision.decided_by}</span>
+              <span className="font-semibold">{decision.decided_by}</span>
               <span className="text-[10px]">
                 {decision.decided_at ? new Date(decision.decided_at).toLocaleTimeString() : ''}
               </span>
@@ -214,11 +214,11 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
           {/* MODIFY Clamping Notice */}
           {hasClampedDiscount && (
-            <div className="p-3 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-lg text-xs text-blue-900 dark:text-blue-200 flex items-start gap-2">
-              <Shield className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="p-3 bg-sky-50 border border-sky-200 rounded-lg text-xs text-[#002E6E] flex items-start gap-2">
+              <Shield className="w-4 h-4 text-[#007EA7] flex-shrink-0 mt-0.5" />
               <div>
                 <span className="font-bold">MODIFY Parameter Clamping Enforced:</span>
-                <span className="block text-[11px] text-blue-700 dark:text-blue-300 mt-0.5">
+                <span className="block text-[11px] text-slate-600 mt-0.5">
                   Original proposed discount was ₹{originalDiscountStr}, clamped by guardrail to ₹{executedDiscountStr}.
                   The autonomy engine evaluates and authorizes strictly ₹{executedDiscountStr}. The unsafe ₹{originalDiscountStr} is NEVER executed.
                 </span>
@@ -227,41 +227,41 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
           )}
 
           {/* Autonomy & Sign-off Gate Area */}
-          <div className="border border-slate-200 dark:border-slate-800 rounded-lg p-4 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700 gap-1.5">
+          <div className="border border-slate-200/90 rounded-xl p-4 bg-slate-50/70 space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2.5 border-b border-slate-200/80 gap-2">
               <div className="flex items-center gap-2">
                 {isAutoApproved ? (
                   <Zap className="w-4 h-4 text-emerald-600" />
                 ) : (
-                  <UserCheck className="w-4 h-4 text-[#002E6E] dark:text-blue-400" />
+                  <UserCheck className="w-4 h-4 text-[#002E6E]" />
                 )}
-                <h3 className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                <h3 className="text-xs font-bold text-slate-800">
                   {isAutoApproved ? 'Autonomous Clearance Gate' : 'Merchant Sign-off Gate'}
                 </h3>
-                <span className="text-[10px] bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold px-1.5 py-0.5 rounded">
+                <span className="text-[10px] bg-white text-slate-700 font-semibold px-2 py-0.5 rounded border border-slate-200 shadow-xs">
                   Mode: {autonomyEvaluation?.autonomy_mode || 'APPROVAL_REQUIRED'}
                 </span>
               </div>
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Source:</span>
+                <span className="text-[11px] text-slate-500 font-medium">Source:</span>
                 <span
                   className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
                     isAutoApproved
-                      ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800'
+                      ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                       : isHumanApproved
-                      ? 'bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-300 dark:border-blue-800'
+                      ? 'bg-blue-100 text-[#002E6E] border border-blue-300'
                       : isRejected
-                      ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-300 dark:border-rose-800'
-                      : 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-800'
+                      ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                      : 'bg-amber-100 text-amber-800 border border-amber-300'
                   }`}
                 >
                   {autonomyEvaluation?.approval_source || decision.approval_status}
                 </span>
                 <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
                     decision.is_execution_eligible
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                      ? 'bg-emerald-600 text-white shadow-xs'
+                      : 'bg-slate-200 text-slate-600'
                   }`}
                 >
                   {decision.is_execution_eligible ? 'EXECUTION ELIGIBLE' : 'EXECUTION INELIGIBLE'}
@@ -271,18 +271,18 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* AUTO-APPROVED Banner */}
             {isAutoApproved && autonomyEvaluation && (
-              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg text-xs text-emerald-900 dark:text-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div className="p-3 bg-emerald-50/90 border border-emerald-200 rounded-xl text-xs text-emerald-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                   <div>
                     <span className="font-bold">Auto-Approved by Deterministic Policy</span>
-                    <span className="text-[11px] text-emerald-700 dark:text-emerald-300 block sm:inline sm:ml-2">
+                    <span className="text-[11px] text-emerald-800 block sm:inline sm:ml-2">
                       Evaluated Risk: <strong>{autonomyEvaluation.evaluated_risk.toFixed(2)}</strong> ≤ Policy Threshold: <strong>{autonomyEvaluation.policy_threshold.toFixed(2)}</strong>.
                       All 16 deterministic conditions verified.
                     </span>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-emerald-800 dark:text-emerald-300 bg-emerald-100/80 dark:bg-emerald-900/60 px-2 py-0.5 rounded font-bold">
+                <span className="text-[10px] font-mono text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded font-bold border border-emerald-200">
                   AUTONOMY_POLICY
                 </span>
               </div>
@@ -290,44 +290,44 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* Approved Parameters Preview */}
             {decision.approved_action ? (
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-md p-3 space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-bold text-slate-800 dark:text-slate-200">
+              <div className="bg-white border border-slate-200/90 rounded-xl p-3.5 space-y-2 shadow-xs">
+                <div className="flex items-center justify-between text-xs font-bold text-slate-800">
                   <span>Authorized Execution Parameters:</span>
                   {isModify && (
-                    <span className="text-[10px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800">
+                    <span className="text-[10px] font-semibold text-[#002E6E] bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200">
                       Modified by Guardrails
                     </span>
                   )}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                  <div className="p-1.5 bg-slate-50 dark:bg-slate-800/60 rounded border border-slate-100 dark:border-slate-800">
-                    <span className="text-[10px] text-slate-400 block">Action Type</span>
-                    <span className="font-semibold text-slate-700 dark:text-slate-300 truncate block">
+                  <div className="p-2 bg-slate-50/80 rounded-lg border border-slate-100">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block">Action Type</span>
+                    <span className="font-bold text-slate-800 truncate block mt-0.5">
                       {decision.approved_action.action_type}
                     </span>
                   </div>
-                  <div className="p-1.5 bg-slate-50 dark:bg-slate-800/60 rounded border border-slate-100 dark:border-slate-800">
-                    <span className="text-[10px] text-slate-400 block">Incentive / Cashback</span>
-                    <span className="font-bold text-emerald-700 dark:text-emerald-400 block">
+                  <div className="p-2 bg-slate-50/80 rounded-lg border border-slate-100">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block">Incentive / Cashback</span>
+                    <span className="font-bold text-emerald-700 block mt-0.5">
                       ₹{String(decision.approved_action.parameters?.discount_amount ?? decision.approved_action.incentive_value ?? proposal?.incentive_value ?? 0)}
                     </span>
                   </div>
-                  <div className="p-1.5 bg-slate-50 dark:bg-slate-800/60 rounded border border-slate-100 dark:border-slate-800">
-                    <span className="text-[10px] text-slate-400 block">Target Audience</span>
-                    <span className="font-semibold text-slate-700 dark:text-slate-300 block">
+                  <div className="p-2 bg-slate-50/80 rounded-lg border border-slate-100">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block">Target Audience</span>
+                    <span className="font-bold text-slate-800 block mt-0.5">
                       {String(decision.approved_action.parameters?.target_count ?? decision.approved_action.target_customer_count ?? proposal?.target_customer_count ?? 0)} customers
                     </span>
                   </div>
-                  <div className="p-1.5 bg-slate-50 dark:bg-slate-800/60 rounded border border-slate-100 dark:border-slate-800">
-                    <span className="text-[10px] text-slate-400 block">Est. Budget</span>
-                    <span className="font-semibold text-slate-700 dark:text-slate-300 block">
+                  <div className="p-2 bg-slate-50/80 rounded-lg border border-slate-100">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block">Est. Budget</span>
+                    <span className="font-bold text-slate-800 block mt-0.5">
                       ₹{String(decision.approved_action.parameters?.budget_inr ?? decision.approved_action.estimated_cost_inr ?? proposal?.estimated_cost_inr ?? 0)}
                     </span>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 rounded-md p-3 text-xs text-rose-800 dark:text-rose-300 flex items-center gap-2">
+              <div className="bg-rose-50/60 border border-rose-200/80 rounded-xl p-3 text-xs text-rose-800 flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-rose-600 flex-shrink-0" />
                 <span>
                   No approved action parameters exist. Action is strictly forbidden from executing.
@@ -338,7 +338,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
             {/* Merchant Sign-off Action Buttons for Pending Human Review */}
             {decision.approval_status === 'PENDING' && !isBlock && !isEscalate && (
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
-                <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                <div className="text-[11px] text-slate-600 leading-relaxed">
                   {autonomyEvaluation?.autonomy_mode === 'APPROVAL_REQUIRED'
                     ? 'Merchant review required under current policy mode. Clicking Approve authorizes execution.'
                     : `Action risk (${autonomyEvaluation?.evaluated_risk.toFixed(2)}) exceeds policy auto-approval threshold (${autonomyEvaluation?.policy_threshold.toFixed(2)}). Merchant review required.`}
@@ -347,7 +347,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
                   <button
                     onClick={onReject}
                     disabled={isRejecting || isApproving}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1 px-3.5 py-1.5 border border-rose-300 dark:border-rose-800 text-rose-700 dark:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:bg-slate-100 text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-rose-200 text-rose-700 hover:bg-rose-50 disabled:bg-slate-100 text-xs font-bold rounded-lg transition-colors cursor-pointer"
                   >
                     {isRejecting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <XCircle className="w-3.5 h-3.5" />}
                     Reject
@@ -355,7 +355,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
                   <button
                     onClick={onApprove}
                     disabled={isApproving || isRejecting}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 text-white text-xs font-bold rounded-lg shadow-sm transition-colors cursor-pointer"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#002E6E] hover:bg-[#001D47] active:scale-[0.98] disabled:bg-slate-300 text-white text-xs font-bold rounded-lg shadow-sm transition-all cursor-pointer"
                   >
                     {isApproving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle2 className="w-3.5 h-3.5" />}
                     Approve Action
@@ -366,12 +366,12 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* BLOCK Decision Message */}
             {isBlock && (
-              <div className="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 rounded-lg text-xs text-rose-900 dark:text-rose-200 space-y-1">
-                <div className="font-bold flex items-center gap-1.5 text-rose-700 dark:text-rose-300">
+              <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-950 space-y-1">
+                <div className="font-bold flex items-center gap-1.5 text-rose-700">
                   <Lock className="w-4 h-4" />
                   Approval Strictly Prohibited (Hard Guardrail BLOCK)
                 </div>
-                <p className="text-[11px] text-rose-700/90 dark:text-rose-300/90 leading-relaxed">
+                <p className="text-[11px] text-rose-700/90 leading-relaxed">
                   Hard guardrail BLOCK cannot be bypassed under ANY autonomy mode (including FULL_AUTONOMY).
                   Neither merchant nor autonomy policy can authorize execution.
                 </p>
@@ -380,12 +380,12 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* ESCALATE Decision Message */}
             {isEscalate && (
-              <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-lg text-xs text-amber-900 dark:text-amber-200 space-y-1">
-                <div className="font-bold flex items-center gap-1.5 text-amber-700 dark:text-amber-300">
+              <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-950 space-y-1">
+                <div className="font-bold flex items-center gap-1.5 text-amber-700">
                   <AlertTriangle className="w-4 h-4" />
                   Manual Escalation Review Required
                 </div>
-                <p className="text-[11px] text-amber-700/90 dark:text-amber-300/90 leading-relaxed">
+                <p className="text-[11px] text-amber-700/90 leading-relaxed">
                   This action triggered high-risk policy boundary checks and requires manual intervention outside autonomous execution.
                 </p>
               </div>
@@ -393,17 +393,17 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* HUMAN APPROVED Success Banner */}
             {isHumanApproved && (
-              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg text-xs text-emerald-900 dark:text-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div className="p-3.5 bg-emerald-50/90 border border-emerald-200 rounded-xl text-xs text-emerald-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <UserCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                   <div>
                     <span className="font-bold">Merchant Sign-off Recorded (HUMAN_APPROVED)</span>
-                    <span className="text-[11px] text-emerald-700 dark:text-emerald-300 block sm:inline sm:ml-2">
+                    <span className="text-[11px] text-emerald-800 block sm:inline sm:ml-2">
                       Signed off by merchant admin. Action is authorized and execution-eligible.
                     </span>
                   </div>
                 </div>
-                <span className="text-[10px] text-emerald-700 dark:text-emerald-300 font-mono bg-emerald-100/80 dark:bg-emerald-900/60 px-2 py-0.5 rounded">
+                <span className="text-[10px] text-emerald-800 font-mono bg-emerald-100/90 border border-emerald-200 px-2 py-0.5 rounded font-bold">
                   {decision.approved_at ? new Date(decision.approved_at).toLocaleTimeString() : 'Approved'}
                 </span>
               </div>
@@ -411,7 +411,7 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* REJECTED Notice */}
             {isRejected && (
-              <div className="p-3 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-700 dark:text-slate-300 flex items-center gap-2">
+              <div className="p-3.5 bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-700 flex items-center gap-2">
                 <XCircle className="w-4 h-4 text-rose-600 flex-shrink-0" />
                 <span>Action rejected by merchant. Execution bypassed safely.</span>
               </div>
@@ -419,30 +419,30 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
 
             {/* 16-Point Safety Conditions Checklist (Collapsible) */}
             {autonomyEvaluation && (
-              <div className="pt-2 border-t border-slate-200 dark:border-slate-700">
+              <div className="pt-2 border-t border-slate-200/80">
                 <button
                   type="button"
                   onClick={() => setShowChecklist(!showChecklist)}
-                  className="flex items-center justify-between w-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  className="flex items-center justify-between w-full text-xs font-semibold text-[#002E6E] hover:text-[#001D47] transition-colors cursor-pointer"
                 >
                   <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-indigo-500" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#007EA7]" />
                     16-Point Safety Policy Verification ({autonomyEvaluation.passed_checks.length}/16 Passed)
                   </span>
                   {showChecklist ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 </button>
 
                 {showChecklist && (
-                  <div className="mt-2.5 space-y-1.5 text-[11px] bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                  <div className="mt-2.5 space-y-1.5 text-[11px] bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-xs">
                     {autonomyEvaluation.passed_checks.map((chk, i) => (
-                      <div key={`pass-${i}`} className="flex items-start gap-1.5 text-emerald-700 dark:text-emerald-400">
-                        <CheckCircle2 className="w-3 h-3 flex-shrink-0 mt-0.5" />
+                      <div key={`pass-${i}`} className="flex items-start gap-1.5 text-emerald-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-emerald-600" />
                         <span>{chk}</span>
                       </div>
                     ))}
                     {autonomyEvaluation.failed_checks.map((chk, i) => (
-                      <div key={`fail-${i}`} className="flex items-start gap-1.5 text-rose-600 dark:text-rose-400 font-medium">
-                        <XCircle className="w-3 h-3 flex-shrink-0 mt-0.5" />
+                      <div key={`fail-${i}`} className="flex items-start gap-1.5 text-rose-600 font-medium">
+                        <XCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-rose-500" />
                         <span>{chk}</span>
                       </div>
                     ))}
@@ -453,22 +453,23 @@ export const DecisionStatusArea: React.FC<DecisionStatusAreaProps> = ({
           </div>
 
           {/* Cryptographic Hash Integrity Footer */}
-          <div className="pt-1 flex flex-wrap items-center justify-between text-[10px] text-slate-400 gap-2 border-t border-slate-100 dark:border-slate-800">
-            <div className="flex items-center gap-1">
+          <div className="pt-2 flex flex-wrap items-center justify-between text-[10px] text-slate-500 gap-2 border-t border-slate-100">
+            <div className="flex items-center gap-1.5">
               <Hash className="w-3 h-3 text-slate-400" />
               <span>Proposal SHA-256:</span>
-              <code className="font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">
+              <code className="font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200/60">
                 {decision.proposal_hash ? `${decision.proposal_hash.slice(0, 16)}...` : 'N/A'}
               </code>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5">
               <Hash className="w-3 h-3 text-slate-400" />
               <span>Evaluation SHA-256:</span>
-              <code className="font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">
+              <code className="font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200/60">
                 {decision.evaluation_hash ? `${decision.evaluation_hash.slice(0, 16)}...` : 'N/A'}
               </code>
             </div>
-            <div className="text-slate-400 font-medium">
+            <div className="text-slate-500 font-semibold flex items-center gap-1">
+              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
               Deterministic Truth Verified
             </div>
           </div>

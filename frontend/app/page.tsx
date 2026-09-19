@@ -526,7 +526,7 @@ export default function DashboardPage() {
 
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100">
+    <div className="min-h-screen flex flex-col bg-slate-50/50">
       {/* 1. Header with Simulation Banner, Simulated MID, AI Provider, and Reset Button */}
       <Header
         merchant={merchant}
@@ -687,16 +687,24 @@ export default function DashboardPage() {
 
 
       {/* Footer with simulation notice */}
-      <footer className="border-t border-slate-200 bg-white py-6 mt-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-2">
-          <div className="font-semibold text-slate-700">
-            MITRA — Autonomous AI Teammate for Paytm Merchants • Paytm Build for India AI Hackathon
+      <footer className="border-t border-slate-200/80 bg-white py-8 mt-12 shadow-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-3">
+          <div className="flex items-center justify-center gap-2 flex-wrap font-bold text-slate-700">
+            <span className="text-[#002E6E]">MITRA</span>
+            <span className="text-slate-300">•</span>
+            <span>Autonomous AI Teammate for Paytm Merchants</span>
+            <span className="text-slate-300">•</span>
+            <span className="text-[11px] font-semibold text-slate-500">Paytm Build for India AI Hackathon</span>
           </div>
-          <p className="max-w-2xl mx-auto text-[11px] text-slate-400">
+          <p className="max-w-2xl mx-auto text-[11px] text-slate-400 leading-relaxed">
             {systemStatus.simulation_disclaimer}
           </p>
-          <div className="pt-2 text-[10px] text-slate-400">
-            Built by Team <strong className="text-slate-600">Pica pica</strong> • Track 3: Autonomous AI Teammates
+          <div className="pt-2 text-[10px] text-slate-400 flex items-center justify-center gap-2 flex-wrap">
+            <span>Built by Team <strong className="text-slate-600">Pica pica</strong></span>
+            <span>•</span>
+            <span className="bg-sky-50 text-[#002E6E] border border-sky-200 px-2 py-0.5 rounded-full font-bold">Track 3: Autonomous AI Teammates</span>
+            <span>•</span>
+            <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">10-Point Deterministic Safety</span>
           </div>
         </div>
       </footer>

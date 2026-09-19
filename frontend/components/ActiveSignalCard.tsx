@@ -71,24 +71,24 @@ export const ActiveSignalCard: React.FC<ActiveSignalCardProps> = ({
       : 'bg-blue-100 text-blue-800 border-blue-300';
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+    <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs flex flex-col justify-between space-y-4">
       <div>
         {/* Card Header with Detection & Investigation Triggers */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-md bg-amber-100 text-amber-800">
+            <div className="p-1.5 rounded-lg bg-amber-50 text-amber-800 border border-amber-200">
               <AlertTriangle className="w-4 h-4" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">
+                <h2 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                   Active Business Signal
                 </h2>
                 <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                   {status}
                 </span>
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+              <div className="text-[10px] text-slate-400 font-mono mt-0.5">
                 ID: {signalId} • Source: Digital Twin SQLite
               </div>
             </div>
@@ -105,7 +105,7 @@ export const ActiveSignalCard: React.FC<ActiveSignalCardProps> = ({
                 type="button"
                 onClick={() => onRunDetection()}
                 disabled={isDetecting || isInvestigating}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 active:scale-95 transition-all shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300/80 active:scale-95 transition-all shadow-xs disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
                 title="Re-run deterministic signal detection detectors"
               >
                 <RefreshCw
@@ -119,7 +119,7 @@ export const ActiveSignalCard: React.FC<ActiveSignalCardProps> = ({
                 type="button"
                 onClick={() => onRunInvestigation()}
                 disabled={isInvestigating || isDetecting || isPlanning}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold text-white bg-[#002E6E] hover:bg-[#001D47] active:scale-95 transition-all shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#002E6E] hover:bg-[#001D47] active:scale-95 transition-all shadow-xs disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
                 title="Trigger Phase 4 evidence synthesis & LLM investigation"
               >
                 <Sparkles
@@ -133,7 +133,7 @@ export const ActiveSignalCard: React.FC<ActiveSignalCardProps> = ({
                 type="button"
                 onClick={() => onRunPlanning()}
                 disabled={isPlanning || isInvestigating || isDetecting}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 active:scale-95 transition-all shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 active:scale-95 transition-all shadow-xs disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
                 title="Synthesize Phase 5 structured ActionProposal within merchant limits"
               >
                 <Sliders
@@ -394,7 +394,7 @@ export const ActiveSignalCard: React.FC<ActiveSignalCardProps> = ({
                         ? 'bg-amber-100 text-amber-900 border-amber-300'
                         : guardrailEvaluation.overall_status === 'BLOCK'
                         ? 'bg-rose-100 text-rose-800 border-rose-300'
-                        : 'bg-purple-100 text-purple-800 border-purple-300'
+                        : 'bg-slate-100 text-slate-800 border-slate-300'
                     }`}
                   >
                     <ShieldCheck className="w-3 h-3" />

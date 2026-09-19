@@ -44,23 +44,23 @@ export const ExplainabilityPanel: React.FC<ExplainabilityPanelProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex justify-end transition-opacity duration-200">
       <div className="bg-white w-full max-w-4xl min-h-screen shadow-2xl flex flex-col border-l border-slate-200 text-slate-800">
         {/* Header */}
-        <div className="sticky top-0 z-20 bg-slate-900 text-white p-5 border-b border-slate-800 flex items-center justify-between shadow-md">
+        <div className="sticky top-0 z-20 bg-[#001D47] text-white p-5 border-b border-[#002E6E] flex items-center justify-between shadow-md">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <div className="p-1.5 bg-[#00BAF2]/20 text-[#00BAF2] rounded-lg">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h2 className="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+              <h2 className="text-base font-bold tracking-tight text-white flex items-center gap-2">
                 MITRA Workflow Explainability &amp; Audit Trail
               </h2>
             </div>
             <div className="flex items-center gap-3 text-xs text-slate-300">
-              <span>Workflow ID: <strong className="font-mono text-cyan-300">{summary?.correlation_id || 'wf-genesis'}</strong></span>
+              <span>Workflow ID: <strong className="font-mono text-[#00BAF2]">{summary?.correlation_id || 'wf-genesis'}</strong></span>
               <span>•</span>
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                 PROTOTYPE SIMULATION
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-sky-500/20 text-sky-200 border border-sky-500/30">
                 DIGITAL TWIN
               </span>
             </div>
@@ -463,12 +463,12 @@ export const ExplainabilityPanel: React.FC<ExplainabilityPanelProps> = ({
               <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
                   <div className="flex items-center gap-2">
-                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold">9</span>
+                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-sky-100 text-[#002E6E] text-xs font-bold">9</span>
                     <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
                       Controlled Autonomy &amp; Approval Flow
                     </h3>
                   </div>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-sky-50 text-[#002E6E] border border-sky-200">
                     MODE: {String(summary.autonomy_summary?.autonomy_mode || 'APPROVAL_REQUIRED')}
                   </span>
                 </div>
@@ -582,7 +582,7 @@ export const ExplainabilityPanel: React.FC<ExplainabilityPanelProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold rounded-lg transition-colors"
+            className="px-4 py-2 bg-[#002E6E] hover:bg-[#001D47] active:scale-[0.98] text-white font-bold text-xs rounded-lg transition-all cursor-pointer shadow-xs"
           >
             Close Panel
           </button>

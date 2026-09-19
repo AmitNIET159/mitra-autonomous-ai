@@ -53,7 +53,7 @@ const decisionStates: {
   {
     state: 'ESCALATE',
     label: 'ESCALATE',
-    badgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+    badgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
     desc: 'High financial impact or uncertainty. Held for merchant manual review.',
     icon: AlertOctagon,
   },
@@ -66,28 +66,28 @@ export const GuardrailStatusArea: React.FC<GuardrailStatusAreaProps> = ({
   onEvaluate,
 }) => {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
+    <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs space-y-4">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-md bg-emerald-100 text-emerald-800">
+          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
             <Shield className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">
+              <h2 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Deterministic Guardrail Engine
               </h2>
               {evaluation && (
                 <span
                   className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${
                     evaluation.overall_status === 'PASS'
-                      ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                      ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                       : evaluation.overall_status === 'MODIFY'
-                      ? 'bg-amber-100 text-amber-900 border-amber-300'
+                      ? 'bg-amber-50 text-amber-800 border-amber-200'
                       : evaluation.overall_status === 'BLOCK'
-                      ? 'bg-rose-100 text-rose-800 border-rose-300'
-                      : 'bg-purple-100 text-purple-800 border-purple-300'
+                      ? 'bg-rose-50 text-rose-700 border-rose-200'
+                      : 'bg-slate-100 text-slate-700 border-slate-200'
                   }`}
                 >
                   {evaluation.overall_status}
@@ -95,13 +95,13 @@ export const GuardrailStatusArea: React.FC<GuardrailStatusAreaProps> = ({
               )}
             </div>
             <p className="text-xs text-slate-500">
-              &ldquo;Deterministic systems calculate truth; the LLM interprets it.&rdquo;
+              Deterministic systems calculate truth; the LLM interprets it.
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+          <span className="flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
             <Lock className="w-3 h-3" /> Hard Safety Barrier
           </span>
 
@@ -109,7 +109,7 @@ export const GuardrailStatusArea: React.FC<GuardrailStatusAreaProps> = ({
             <button
               onClick={onEvaluate}
               disabled={isEvaluating}
-              className="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all disabled:opacity-60"
+              className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isEvaluating ? (
                 <>
@@ -126,18 +126,18 @@ export const GuardrailStatusArea: React.FC<GuardrailStatusAreaProps> = ({
       </div>
 
       {/* Safety Notice Banner */}
-      <div className="bg-slate-900 text-slate-100 rounded-lg p-2.5 px-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div className="bg-[#001D47] text-slate-100 rounded-lg p-2.5 px-3 flex flex-wrap items-center justify-between gap-2 text-xs border border-[#002E6E]">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span className="font-semibold">
+          <span className="font-bold text-slate-100">
             100% Deterministic Code Verification
           </span>
           <span className="text-slate-400 hidden sm:inline">•</span>
           <span className="text-slate-300 text-[11px]">
-            LLM has zero authority over safety evaluation or execution dispatch
+            Zero LLM authority over safety thresholds or execution dispatch
           </span>
         </div>
-        <span className="font-mono text-[10px] text-emerald-400 uppercase tracking-wide font-bold">
+        <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-wide font-bold">
           Zero Hallucination Tolerance
         </span>
       </div>

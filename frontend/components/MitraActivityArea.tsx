@@ -22,80 +22,82 @@ export const MitraActivityArea: React.FC<MitraActivityAreaProps> = ({
   isEvaluatingGuardrails = false,
 }) => {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+    <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-md bg-blue-100 text-[#002E6E]">
+            <div className="p-1.5 rounded-lg bg-blue-50 text-[#002E6E] border border-blue-200/70">
               <Bot className="w-4 h-4" />
             </div>
-            <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">MITRA Teammate Activity</h2>
+            <h2 className="text-xs font-bold text-slate-700 uppercase tracking-wider">MITRA Teammate Activity</h2>
           </div>
-          <span className="text-xs text-[#007EA7] font-semibold flex items-center gap-1">
-            <Radio className="w-3.5 h-3.5 text-blue-600 animate-pulse" /> Live Telemetry
+          <span className="text-xs text-[#007EA7] font-bold flex items-center gap-1.5">
+            <Radio className="w-3.5 h-3.5 text-[#00BAF2] animate-pulse" /> Live Telemetry
           </span>
         </div>
 
         <div className="space-y-3">
           {/* Step 1: Deterministic Signal Detection */}
-          <div className="p-3 bg-blue-50/50 border-l-4 border-l-blue-600 border-r border-t border-b border-blue-200/80 rounded-r-lg">
+          <div className="p-3 bg-sky-50/40 border-l-4 border-l-[#002E6E] border-r border-t border-b border-slate-200 rounded-r-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-blue-950 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+              <span className="text-xs font-bold text-[#002E6E] flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00BAF2]" />
                 1. DETERMINISTIC SIGNAL DETECTION COMPLETE
               </span>
-              <span className="text-[10px] text-blue-700 font-mono font-medium">PHASE 3 VERIFIED</span>
+              <span className="text-[10px] text-[#007EA7] font-mono font-bold bg-white px-1.5 py-0.5 rounded border border-sky-200">
+                PHASE 3 VERIFIED
+              </span>
             </div>
-            <p className="text-xs text-slate-700 mt-1">
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">
               5 deterministic detectors evaluated against SQLite digital twin. Detected <strong>EVENING_ORDER_DECLINE</strong> (-29.02% from 410 baseline to 291 observed orders) at <strong>HIGH</strong> severity. Facts verified mathematically.
             </p>
           </div>
 
           {/* Step 2: Phase 4 Root-Cause Investigation */}
           <div
-            className={`p-3 border-l-4 border-r border-t border-b rounded-r-lg transition-colors ${
+            className={`p-3 border-l-4 border-r border-t border-b rounded-r-xl transition-all ${
               investigation
-                ? 'bg-indigo-50/40 border-l-indigo-600 border-indigo-200/80'
+                ? 'bg-blue-50/30 border-l-[#002E6E] border-slate-200'
                 : isInvestigating
-                ? 'bg-blue-50/60 border-l-blue-500 border-blue-200'
-                : 'bg-slate-50 border-l-amber-500 border-slate-200/80'
+                ? 'bg-sky-50/50 border-l-[#00BAF2] border-sky-200'
+                : 'bg-slate-50/50 border-l-amber-500 border-slate-200'
             }`}
           >
             <div className="flex items-center justify-between">
               <span
                 className={`text-xs font-bold flex items-center gap-1.5 ${
                   investigation
-                    ? 'text-indigo-950'
+                    ? 'text-[#002E6E]'
                     : isInvestigating
-                    ? 'text-blue-950'
-                    : 'text-amber-950'
+                    ? 'text-[#007EA7]'
+                    : 'text-amber-900'
                 }`}
               >
                 {investigation ? (
-                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 ) : (
-                  <Search className={`w-3.5 h-3.5 ${isInvestigating ? 'animate-spin text-blue-600' : 'text-amber-600'}`} />
+                  <Search className={`w-3.5 h-3.5 ${isInvestigating ? 'animate-spin text-[#00BAF2]' : 'text-amber-600'}`} />
                 )}
                 2. EVIDENCE-BACKED INVESTIGATION
               </span>
               <span
-                className={`text-[10px] font-mono font-medium ${
+                className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${
                   investigation
-                    ? 'text-indigo-700'
+                    ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
                     : isInvestigating
-                    ? 'text-blue-700'
-                    : 'text-slate-400'
+                    ? 'text-[#007EA7] bg-sky-50 border-sky-200'
+                    : 'text-slate-500 bg-white border-slate-200'
                 }`}
               >
                 {investigation ? 'PHASE 4 ACTIVE' : isInvestigating ? 'INVESTIGATING...' : 'READY'}
               </span>
             </div>
-            <p className="text-xs text-slate-600 mt-1">
+            <p className="text-xs text-slate-600 mt-1 leading-relaxed">
               {investigation ? (
                 <>
                   Deterministic evidence bundle assembled (<strong>E1–E5</strong>). Generated{' '}
-                  <strong className="text-indigo-950 font-bold">{investigation.hypotheses.length} validated hypotheses</strong> with{' '}
-                  <strong className="text-indigo-950 font-bold">{investigation.confidence}</strong> confidence. Hallucination check passed; non-causal language preserved.
+                  <strong className="text-slate-900 font-bold">{investigation.hypotheses.length} validated hypotheses</strong> with{' '}
+                  <strong className="text-slate-900 font-bold">{investigation.confidence}</strong> confidence. Hallucination check passed; non-causal language preserved.
                 </>
               ) : isInvestigating ? (
                 <>
